@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      小结: 
+        1. 在标签的子节点的位置上使用{{}}插值表达式
+        2. 在标签的属性的位置上,要使用指令,不能再使用插值表达式.
+          使用: <a v-bind:href="表达式"></a>这时,href后面虽然写的是字符串,但是vue在解析的时候,会将字符串里面的内容,当成js表达式执行
+          简写: <a :href="表达式"></a>
+
+
+     -->
+    <!-- 第一步: 引入vue.js -->
+    <script src="./js/vue.js"></script>
+
+    <!-- 第二步: 定义模板 -->
+    <div id="root">
+      <h1>插值语法</h1>
+      <div>你好, {{msg.toUpperCase()}}</div>
+      <div>你好, {{test}}</div>
+      <hr />
+      <h1>指令语法</h1>
+      <a v-bind:href="url1">atguigu</a>
+      <a :href="url2">vue</a>
+    </div>
+
+    <!-- 第三步: 编写vue代码 -->
+    <script>
+      new Vue({
+        el: '#root',
+        data: {
+          msg: 'rose',
+          test: [1, 2, 3],
+          url1: 'http://www.atguigu.com',
+          url2: 'http://cn.vuejs.org',
+        },
+      })
+    </script>
+  </body>
+</html>

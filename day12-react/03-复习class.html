@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // class 是js中构造函数的语法糖
+
+      //   function Person(name) {
+      //     this.name = name // 实例属性 实例独自拥有的数据,写在实例上面
+      //   }
+      //   // 公共的数据,写在原型上面
+      //   Person.prototype.eat = function () {
+      //     console.log('吃')
+      //   }
+
+      //   function Student(name, score) {
+      //     Person.call(this, name)
+      //     this.score = score
+      //   }
+
+      //   Student.prototype = new Person()
+
+      //   const p1 = new Person('zs')
+      //   const p2 = new Person('ls')
+      //   console.log(p1)
+      //   console.log(p2)
+      //   p1.eat()
+      //   p2.eat()
+      //   const s1 = new Student('zs', 100)
+      //   console.log(s1)
+      //   s1.eat()
+
+      class Person {
+        constructor(name) {
+          // 如果一个类没有继承父类,constructor中可以不写super
+          this.name = name
+        }
+
+        // 直接写在类里面的函数,这个函数直接就添加到了原型上面
+        eat() {
+          console.log('吃')
+        }
+      }
+
+      class Student extends Person {
+        //   如果一个类,继承了父类,可以不写construtor. 代码执行的时候,解析器会自动帮我们加
+        // 但是如果,自定义了constructor,并且继承了父类,就必须在constructor的第一行调用super()
+        // super指向的其实就是父类的constructor
+        constructor(name, score) {
+          super(name)
+          this.score = score
+        }
+      }
+
+      //   const p1 = new Person('zs')
+      //   const p2 = new Person('ls')
+      //   console.log(p1)
+      //   console.log(p2)
+      //   p1.eat()
+      //   p2.eat()
+
+      const s1 = new Student('ls', 100)
+      console.log(s1)
+      s1.eat()
+    </script>
+  </body>
+</html>

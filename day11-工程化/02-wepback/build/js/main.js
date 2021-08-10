@@ -1,0 +1,1 @@
+!function(){"use strict";var o;o=JSON.parse('{"name":"zs","age":18}'),console.log(o),console.log("箭头函数module1"),console.log(123123123123)}();

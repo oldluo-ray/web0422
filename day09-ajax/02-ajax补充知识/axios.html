@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      btn.onclick = async function () {
+        // const result = await axios({
+        //   url: 'http://127.0.0.1:5000/test',
+        //   method: 'get',
+        //   params: {
+        //     name: 'zs',
+        //     age: 18,
+        //   },
+        // })
+        // 注意: 使用axios发送post请求,上传的数据的格式是json格式
+        // 上传数据时,使用data
+        // 响应的数据是一个axios包装的对象,对象的data才是响应主体中我们需要的数据
+        const result = await axios({
+          url: 'http://127.0.0.1:5000/test',
+          method: 'post',
+          data: {
+            name: 'zs',
+            age: 18,
+          }, // {"name": "zs", "age":18}
+        })
+        console.log(result)
+      }
+    </script>
+  </body>
+</html>

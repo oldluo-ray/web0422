@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/vue.js"></script>
+
+    <div id="root">
+        <!-- <input type="text" v-model="keyWord" @keyup.enter="handle"> -->
+        <input type="text" v-model="keyWord" > 
+        <button @click="handle(1)">年龄升序</button>
+        <button @click="handle(2)">年龄降序</button>
+        <button @click="handle(0)">年龄原序</button>
+        <ul>
+            <li v-for="item in filterList" :key="item.age">{{item.name}}-{{item.age}}-{{item.gender}}</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            data: {
+               keyWord: '',
+               sortType: 0, // 0 原序, 1 升序, 2 降序
+               list: [
+                   {
+                       name: '马冬梅',
+                       age:19,
+                       gender: '女'
+                   },
+                   {
+                       name: '周冬雨',
+                       age:18,
+                       gender: '女'
+                   },
+                   {
+                       name: '周杰伦',
+                       age:20,
+                       gender: '男'
+                   },
+                   {
+                       name: '温兆伦',
+                       age:21,
+                       gender: '男'
+                   },
+                   
+               ]
+            },
+            computed: {
+                filterList(){
+                    let arr = this.list.filter(item=> item.name.indexOf(this.keyWord) !== -1)
+
+
+                    //添加排序的逻辑
+                    // 如果sortType的值是0,就不需要人为的排序了,因为上面的filter其实返回的就是一个原序的数组
+                    if(this.sortType){
+                        arr.sort((a,b)=>{
+                            return this.sortType === 1 ?  a.age - b.age : b.age - a.age
+                        })
+                    }
+                    
+                    return arr
+                }
+            },
+        
+            methods:{
+                handle(sortType){
+                    console.log(sortType);
+                    this.sortType = sortType
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

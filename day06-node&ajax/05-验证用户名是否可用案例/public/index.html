@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input" /><button id="btn">按钮</button>
+    <div id="tip"></div>
+    <script>
+      const input = document.getElementById('input')
+      const btn = document.getElementById('btn')
+      const tip = document.getElementById('tip')
+      btn.onclick = function () {
+        //获取文本框信息
+        const username = input.value.trim()
+        if (!username) return
+
+        // 发送ajax请求,验证用户名是否可用
+        // 创建xhr
+        const xhr = new XMLHttpRequest()
+        //设置请求方式和url
+        xhr.open('post', 'http://127.0.0.1:5000/test')
+        //设置 请求头
+        xhr.setRequestHeader(
+          'content-type',
+          'application/x-www-form-urlencoded'
+        )
+        //发送请求
+        xhr.send('username=' + username)
+
+        // 接收响应
+        xhr.onreadystatechange = function () {
+          // 完成
+          if (xhr.readyState === 4) {
+            //成功
+            if (xhr.status === 200) {
+              //   console.log(xhr.responseText)
+              // xhr.response拿到的是json格式的字符串
+              const result = JSON.parse(xhr.responseText)
+
+              if (result.code === 200) {
+                //用户名可用
+                tip.style.color = 'green'
+              } else {
+                tip.style.color = 'red'
+              }
+              tip.textContent = result.msg
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

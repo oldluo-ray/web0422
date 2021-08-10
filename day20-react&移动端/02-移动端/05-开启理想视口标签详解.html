@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 开启理想视口 -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <!-- width: 用来设置布局视口的宽度  取值: 具体的数字/device-width(设备独立像素的宽度) 
+        取值为数字,数字是多少,布局视口就变成多少,但是具体的数字有兼容问题,所以一般不用
+    -->
+    <!-- initial-scale: 表示初始的一个缩放比. 其实还是修改布局视口的宽度 
+        计算公式:scale = 屏幕宽度(设备独立像素)  /  布局视口宽度。
+        布局视口的宽度: 设备独立像素的宽度 / scale
+    
+    -->
+    <!-- 注意: 如果width的值和initial-scale的值不同,谁的值大,就听谁的 -->
+    <!-- <meta name="viewport" content="width=9000" /> -->
+    <!-- <meta name="viewport" content="initial-scale=0.5" /> -->
+
+    <!-- <meta name="viewport" content="width=900, initial-scale=0.5" /> -->
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(document.documentElement.clientWidth)
+    </script>
+  </body>
+</html>

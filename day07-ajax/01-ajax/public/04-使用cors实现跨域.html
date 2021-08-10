@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+    <script>
+      // cors跨域资源共享
+      // 特点:
+      //  1. get/post都可以
+      //  2. 也需要后端配合
+      //  3. 有兼容性问题
+      btn.onclick = function () {
+        const xhr = new XMLHttpRequest()
+        xhr.open('post', 'http://127.0.0.1:5000/test')
+        xhr.setRequestHeader(
+          'content-type',
+          'application/x-www-form-urlencoded'
+        )
+        xhr.send('name=zs')
+        // 响应
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              console.log(xhr.responseText)
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

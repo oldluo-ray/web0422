@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let obj = { x: 100 }
+      let obj2 = { y: 200 }
+
+      // 需求: 让obj2代理obj
+      Object.defineProperty(obj2, 'x', {
+        // getter 访问obj2.x的时候,getter调用
+        get() {
+          console.log('obj2的getter被调用了')
+          return obj.x
+        },
+        // setter 给obj2.x = 值 ,setter调用
+        set(value) {
+          console.log('setter调用了')
+          obj.x = value
+          
+        },
+      })
+
+      //   console.log('obj', obj)
+      //   console.log('obj2', obj2)
+      console.log(obj2.x)
+      obj2.x = 300
+      console.log('obj', obj)
+      console.log('obj2', obj2)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+.img {
+  width: 100px;
+  height: 100px;
+  background-size: 100%;
+}
+h1 {
+  color: red;
+  display: flex;
+}
+
+.one {
+  background-image: url('../images/react.jpg');
+}
+.two {
+  background-image: url('../images/vue.png');
+}

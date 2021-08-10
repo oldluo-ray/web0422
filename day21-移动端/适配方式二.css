@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+div {
+  /* 设计值 / (设计稿宽度 / 10) */
+  width: 9.2rem;
+  height: 4rem;
+  margin: 0.4rem;
+  background-color: skyblue;
+}

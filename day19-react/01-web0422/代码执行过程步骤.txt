@@ -1,0 +1,20 @@
+1. App中引入了WithList组件,代码进入WithList里面执行
+2. 代码进入WithList之后,WithList还没有执行完毕,但是又进入到actions.js中执行
+3. 在actions.js中,引入了constants.js中定义的常量
+4. 定义addItem 和 getList 以及 getListasync这几个actionCreator, 并且导出. actions执行完毕
+5. 回到WithList中,继续引入List组件, 在List.js中,只是在内存中定义了一个List组件
+6. 继续回到WithList中,执行connect函数, 返回高阶组件. 在实例化这个高阶组件的过程中,内部会自动调用connect中传入的第一个参数,获取redux中的数据, 然后将传入的actionCreator,封装成另一个函数名相同的函数. WithList执行完毕
+7. 此时回到App.js中,继续执行,接下来进入store.js中执行
+在store.js中,引入了reducer,所以进入reducer.js,创建reducer函数
+8. 在store.js中,调用createStore,创建redux中的store对象. 
+在实例化store的时候,reducer第一次被调用,用于初始化redux中的数据,此时redux中state的值就是 {list: []}. 然后通过process.env.NODE_ENV获取当前代码执行的环境,从而判断是否要使用调试工具
+9. 在store对象实例化的过程中,不仅初始化了数据,还将redux-thunk这个中间件,添加到了项目中,当执行异步actionCreator的时候,thunk就会参与工作. store.js就执行完毕了
+10.导出了App跟组件
+11. 在入口文件中new App, 实例化App组件
+12.实例化App的过程中,使用了react-redux的Provider组件,目的是为了将redux中的store对象,传递给整个项目中所有的容器组件
+13. 实例化App的过程中,实例化了WithList
+由于WithList容器组件是List的父组件,所以WithList实例化,就意味着List也会被实例化
+14. 当List组件挂载完毕的时候,调用getListasync(封装后的). 这个函数中执行的代码就是
+dispatch(getListasync())这里的是actionCreator. 此时代码进入actions.js中去执行getListasync的内部函数,发送异步请求,异步请求成功之后,调用dispatch,这个dispatch才是真正的store.dispatch的方法.从而让reducer函数执行
+15. reducer函数中的GET_LIST需求被执行了,所以redux中的数据就变成了新的数据. redux的数据发生变化了,这是WithList就监听到了, 就会再次调用connect函数第一次调用的第一个参数,为了将最新的数据,传递给List
+16. List拿到最新的数据,重新渲染

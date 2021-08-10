@@ -1,0 +1,26 @@
+/* 定义字体 */
+@font-face {
+  /* 给指定的字体库文件,起字体名 */
+  font-family: 'iconfont'; /* Project id  */
+  src: url('../assets/iconfont.ttf') format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gouwuche1:before {
+  content: '\e60c';
+}
+
+.icon-gouwuche6:before {
+  content: '\e60d';
+}
+
+.icon-gouwuche9:before {
+  content: '\e60e';
+}

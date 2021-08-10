@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 第一步: 引入vue.js -->
+    <script src="./js/vue.js"></script>
+
+    <!-- 第二步: 定义模板 -->
+    <div id="root">
+      <h1>插值语法</h1>
+      <div>你好, {{msg.toUpperCase()}}</div>
+      <button @click="handle">按钮</button>
+    </div>
+
+    <!-- 第三步: 编写vue代码 -->
+    <script>
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          msg: 'rose',
+        },
+        methods: {
+          handle() {
+            //  console.log(this.msg);
+            this.msg = 'abc'
+          },
+        },
+      })
+
+      console.log(vm)
+    </script>
+  </body>
+</html>

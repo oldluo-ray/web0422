@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <form id="form" enctype="multipart/form-data">
+      用户名: <input type="text" name="username" /> <br />
+      密码: <input type="password" name="password" /> <br />
+      <input type="file" name="file" />
+    </form> -->
+    <input type="file" >
+    <button id="btn">按钮</button>
+    <script>
+      btn.onclick = function () {
+        // console.log('按钮触发了')
+        // const formdata = new FormData(form)
+
+        // const xhr = new XMLHttpRequest()
+        // 使用formdata就只能用post请求
+        // xhr.open('post', 'http://127.0.0.1:5000/upload')
+        // 使用formdata无需手动设置请求头,浏览器会自动添加
+        // xhr.send(formdata)
+
+        // 不适用form表单上传文件:
+        // 1. 获取上传文件的表单项
+        const fileInput = document.querySelector('input[type=file]')
+        // 2. 根据表单项,获取要上传的文件对象
+        const file = fileInput.files[0]
+        // 3. 创建formdata对象
+        const formData = new FormData()
+        // 4. 将文件对象添加到formdata中
+        formData.append('file', file)
+        // 5. 利用ajax配合formdata,上传文件
+        const xhr = new XMLHttpRequest()
+        xhr.open('post','http://127.0.0.1:5000/upload')
+        //监听文件上传的进度: 注意: 要在发送之前监听
+        xhr.upload.onprogress = function(e){
+           console.log('已经上传', e.loaded, '字节');
+           console.log('共有', e.total, '字节');
+           e.preventDefault()
+        }
+        xhr.send(formData)
+      }
+    </script>
+  </body>
+</html>

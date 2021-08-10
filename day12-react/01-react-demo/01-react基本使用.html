@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意: 要注意顺序,先react,后react-dom -->
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script>
+      // // <ul>
+      //     // <li>
+      //         <a href="">
+      //             </a>
+      //         // </li>
+      //     // </ul>
+      //   React.createElement('标签名', {标签的属性}, 子节点,子节点...)
+      const div = React.createElement(
+        'div',
+        {
+          id: 'box',
+          className: 'box',
+          htmlFor: 'one',
+        },
+        '123',
+        '345',
+        'aaa',
+        React.createElement('h1')
+      ) // 创建一个react元素(虚拟dom),不是真正的dom对象
+      console.log(div)
+      // 将这个react元素,转成真正的dom元素,并且添加到页面上
+      ReactDOM.render(div, document.getElementById('root'))
+    </script>
+  </body>
+</html>

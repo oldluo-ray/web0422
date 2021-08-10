@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width:3.45rem;
+            height: 1.50rem;
+            margin: 0.15rem;
+            background-color: skyblue;
+            border:1px solid black;
+            box-sizing: border-box;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+        function mobile (){
+            document.documentElement.style.fontSize = (document.documentElement.clientWidth * 100)/375 + 'px'
+        }
+        mobile()
+        window.onresize = mobile
+
+        // 让布局视口变大多倍 ,此时整个盒子看起来缩小了
+        const viewport = document.querySelector('meta[name=viewport]')
+        const scale = 1 / window.devicePixelRatio
+        viewport.setAttribute('content', 'width=device-width, initial-scale='+scale)
+
+        // 让盒子变大,恢复设计稿的效果
+        // 让跟字体的大小变大
+        let htmlfontSize  = document.documentElement.style.fontSize
+        htmlfontSize = parseFloat(htmlfontSize) * window.devicePixelRatio
+        // console.log(htmlfontSize);
+        document.documentElement.style.fontSize = htmlfontSize + 'px'
+        
+    </script>
+</body>
+</html>

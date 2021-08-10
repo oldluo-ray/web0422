@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意: 要注意顺序,先react,后react-dom -->
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <!-- 需要添加type=text/babel babel才会工作,将这个script里面的代码,进行编译 -->
+    <script type="text/babel">
+      let obj = {
+        name: 'hj',
+        info: '太君',
+        age: 58,
+      }
+      // 使用的是jsx  javascript xml
+      // jax是语法糖, 最终还是编译成React.createElement执行
+      const div = (
+        <div>
+          <h1>个人介绍</h1>
+          {/* 这是jsx中的注释*/}
+          {/* 在jsx中写的{} 是插值表达式,在这里可以写任何的js表达式*/}
+          {/*
+
+            什么是js表达式:
+                只有运行完毕之后,可以得到一个结果,就是js表达式
+                字面量
+                变量
+                常量
+                运算
+                三元运算
+                function(){}
+                fn() 函数调用
+
+
+                不是表达式: 
+                for语句
+                if语句
+                switch语句
+                while语句
+                dowhile语句
+                声明语句: let a = 1
+
+
+
+
+          */}
+
+          <h2>{obj.name}</h2>
+          <h2>{obj.info}</h2>
+          <h2>{obj.age}</h2>
+          {/* 插值表达式中, 可以传入任何的js表达式. 但是当插值表达式写在标签的子节点的位置上的时候,就意味着要渲染插值表达式中的内容.这时如果传入对象,函数或布尔值就没有意义. 所以react也不会渲染. 注意： 如果渲染的是react对象,就没有问题*/}
+          <h2>{false}</h2>
+        </div>
+      )
+
+      ReactDOM.render(div, document.getElementById('root'))
+    </script>
+  </body>
+</html>

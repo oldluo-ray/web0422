@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+
+    <script>
+      btn.onclick = async function () {
+        // const obj = await fetch('http://127.0.0.1:5000/test?name=zs&age=18')
+        // const result = await obj.json()
+        // console.log(result)
+
+        const obj = await fetch('http://127.0.0.1:5000/test', {
+          method: 'post',
+          body: JSON.stringify({ name: 'zs', age: 18 }),
+          headers: {
+            'content-type': 'application/json',
+          },
+        })
+        const result = await obj.json()
+        console.log(result)
+      }
+    </script>
+  </body>
+</html>

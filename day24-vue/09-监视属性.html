@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 第一步: 引入vue.js -->
+    <script src="./js/vue.js"></script>
+
+    <!-- 第二步: 定义模板 -->
+    <div id="root">
+      <h1>今天天气很{{info}}</h1>
+      <button @click="handle">按钮</button>
+    </div>
+
+    <!-- 第三步: 编写vue代码 -->
+    <script>
+      new Vue({
+        el: '#root',
+        data: {
+          isHot: false,
+          // info: '凉爽',
+        },
+        computed: {
+          info() {
+            console.log('isHot被修改了')
+            setTimeout(() => {
+              console.log(this)
+              return this.isHot ? '炎热' : '凉爽'
+            }, 1000)
+            return 123
+          },
+        },
+        // watch: {
+        // 要监视的属性必须是已有的属性
+
+        // isHot: {
+        //   immediate: true,
+        //   // 默认handler是当监听的数据发生变化被调用,但是配置了immediate属性值为true的时候,handler上来就会被调用一次
+        //   handler(newValue, oldValue) {
+        //     console.log('handler被调用了')
+        //     this.info = this.isHot ? '炎热' : '凉爽'
+        //     // console.log(newValue, oldValue)
+        //   },
+        // },
+        // 简写形式:
+        //   isHot(nv, ov) {
+        //     console.log(nv, ov)
+        //     setTimeout(() => {
+        //       this.info = this.isHot ? '炎热' : '凉爽'
+        //     }, 1000)
+        //   },
+        // },
+        methods: {
+          handle() {
+            this.isHot = !this.isHot
+          },
+        },
+      })
+    </script>
+  </body>
+</html>

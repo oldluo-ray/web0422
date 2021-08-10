@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+
+    <div id="root">
+        <input id="inp" type="text" v-model="msg">
+        <div id="box">{{num}}</div>
+        <button @click="handle">按钮</button>
+        <button @click="dhandle">卸载</button>
+    </div>
+
+
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                msg:'hello',
+                num: 0
+            },
+            methods:{
+                handle(){
+                    this.num +=1
+                },
+                dhandle(){
+                    this.$destroy()
+                }
+            },
+
+            beforeCreate(){
+                // 初始化vue实例,此时还没有进行数据代理.无法获取到data的数据
+                console.log('beforeCreate',this.msg);
+            },
+            created(){
+                // 初始化vue实例完成
+                console.log('created',this.msg);
+            },
+
+            beforeMount(){
+                // 开始解析模板,还没有生成真实的dom
+                console.log('beforeMount', document.querySelector('#inp'));
+            },
+            mounted(){
+                // 表示挂载完毕
+                console.log('mounted', document.querySelector('#inp'));
+            },
+
+            beforeUpdate(){
+                // 数据是新的,dom是旧的
+                console.log('beforeUpdate', this.num, document.querySelector('#box').innerText);
+            },
+            updated(){
+                // 数据是新的,dom是新的
+                console.log('updated', this.num, document.querySelector('#box').innerText);
+            },
+
+            beforeDestroy(){
+                console.log('beforeDestory','组件即将卸载', this);
+            },
+            destroyed(){
+                console.log('destory','组件卸载完毕', this);
+            },
+
+        })
+    </script>
+</body>
+</html>

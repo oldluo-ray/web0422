@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+
+    <div id="root">
+        <!-- 使用组件 -->
+        <test></test>
+        <h1>hahah </h1>
+        <h1>hehehe</h1>
+        <!-- <Demo></Demo> -->
+    </div>
+    <hr>
+    <div id="root1">
+        <!-- 使用组件 -->
+        <!-- <test></test> -->
+        <!-- <Demo></Demo> -->
+    </div>
+
+
+    <script>
+
+        // 1. 定义组件
+        const Demo = {
+            template:`<div>
+                    <h2>这是demo组件</h2>
+                
+                </div>`
+        }
+       const Test = {
+            name:'xxx',
+            template: `<div>
+                    <h1>定义的组件Test</h1>
+                    <div>{{msg}}</div>
+                    <Demo></Demo>
+                </div>`,
+
+            data(){
+                return {
+                    msg: 'hello'
+                }
+            },
+            components:{
+                Demo: Demo
+            }
+        }
+        
+        // 全局注册组件
+        Vue.component('test', Test)
+        // Vue.component('Demo', Demo)
+
+
+
+        new Vue({
+            el:'#root',
+            // 2. 局部注册组件
+            // components:{
+            //     test
+            // }
+        })
+   
+        new Vue({
+            el: '#root1'
+        })
+   </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+    <script>
+      // jsonp原理:
+      // 利用script标签不受同源策略影响,发送请求,定义一个函数,将函数名上传给服务器,服务器响应函数调用,将要响应的数据,作为实参,写在函数调用的小括号中.我们定义的函数就会被调用.可以接收到响应的数据
+      // jsonp的特点:
+      // 1. 只能用get请求
+      // 2. 需要定义函数,将函数名上传.属性一般都叫callback
+      // 3. 需要后端配合
+      // 4. 没有兼容性问题
+      function fn(data) {
+        console.log(data)
+      }
+      btn.onclick = function () {
+        // const xhr = new XMLHttpRequest()
+        // xhr.open('get', 'http://127.0.0.1:5000/test')
+        // // xhr.setRequestHeader(
+        // //   'content-type',
+        // //   'application/x-www-form-urlencoded'
+        // // )
+        // xhr.send('name=zs')
+        // // 响应
+        // xhr.onreadystatechange = function () {
+        //   if (xhr.readyState === 4) {
+        //     if (xhr.status === 200) {
+        //       console.log(xhr.responseText)
+        //     }
+        //   }
+        // }
+
+        // 使用jsonp,实现跨域
+
+        // script标签不受同源策略影响,所以直接使用script标签发送请求
+        const script = document.createElement('script')
+        // script发送的请求一定是get请求
+        script.src = 'http://127.0.0.1:5000/test?callback=fn'
+        //将script标签添加到dom树
+        document.body.appendChild(script)
+      }
+    </script>
+    <!-- <script>
+        fn(数据)
+    </script> -->
+  </body>
+</html>

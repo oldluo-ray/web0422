@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="http://127.0.0.1:5000/test" enctype="application/x-www-form-urlencoded">
+        <input type="text" name="username">
+        <input type="submit">
+    </form> -->
+    <script >
+
+        // 1. 浏览器地址栏 get 页面会切换
+        // 2. a标签 get 页面也会切换
+        // 3. script get 页面不会切换
+        // 4. link get 用于引入css/favicon 
+        // 5. img get 用来引入图片文件
+        // 6. form get/post 页面切换,并且会阻塞代码执行(同步)
+
+
+        // ajax: 异步的利用js去发送一个请求
+        //特点: 1. 不会阻塞代码(异步) 2. 页面不会切换  3. 可以使用任何的请求方式
+
+        // 使用: 
+            // XMLHttpRequest 浏览器提供这个对象,用来发送ajax请求
+            // 1. 创建xmlhttprequest实例对象
+            const xhr = new XMLHttpRequest()
+            // 2. 设置请求方式和请求的url地址
+            // xhr.open(请求方式, url地址)
+            xhr.open('post','http://127.0.0.1:5000/test')
+            // 3. 设置请求头(get请求不需要,post请求才需要)
+            // 注意: 如果post请求不设置请求头,那么请求还是会发出去,还是会发给服务器.但是服务器无法接收到数据
+            xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+            // 4. 发送请求
+            xhr.send('name=zs&age=18')
+
+            console.log('哈哈哈哈哈哈');
+
+
+    </script>
+
+    <script>
+
+            // {
+            //     name: xx,
+            //     age: xxx
+            // }
+
+            
+            // <student>
+            //     <name></name>
+            //     <age></age>
+            //     </student>
+
+
+    </script>
+</body>
+</html>

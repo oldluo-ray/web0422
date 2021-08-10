@@ -1,0 +1,31 @@
+todos案例接口文档: 
+
+    1. 查询所有任务数据
+        url: http://127.0.0.1:5000/findTodos
+        请求方式: get
+        参数: callback  使用jsonp,上传接收数据的函数名
+        响应结果: [{todoName:xxx,isDone:xxx, _id: xxx},{todoName:yyy,isDone:yyy, _id: yyy}]
+
+    2. 添加一条任务数据
+        url: http://127.0.0.1:5000/addTodo
+        请求方式: post
+        参数: todoName  任务名
+        响应结果: [{todoName:xxx,isDone:xxx, _id: xxx},{todoName:yyy,isDone:yyy, _id: yyy}]
+
+    3. 修改一条任务数据的状态
+        url: http://127.0.0.1:5000/updateOneTodo
+        请求方式: post
+        参数: id: 指定任务的id,  isDone 要修改后的状态(布尔值)
+        响应结果: [{todoName:xxx,isDone:xxx, _id: xxx},{todoName:yyy,isDone:yyy, _id: yyy}]
+
+    4. 修改所有任务数据的状态
+        url: http://127.0.0.1:5000/updateAllTodos
+        请求方式: post
+        参数: isDone 要修改后的状态(布尔值)
+        响应结果: [{todoName:xxx,isDone:xxx, _id: xxx},{todoName:yyy,isDone:yyy, _id: yyy}]
+
+    5. 删除任务数据
+        url: http://127.0.0.1:5000/deleteTodos
+        请求方式: post
+        参数: ids 要删除任务的id的数组 ["id值","id值"]
+        响应结果: [{todoName:xxx,isDone:xxx, _id: xxx},{todoName:yyy,isDone:yyy, _id: yyy}]

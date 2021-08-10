@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/vue.js"></script>
+
+    <div id="root">
+        <div v-if="age > 18">成年看的电影</div>
+        <div v-else-if="age == 18">刚成年看的的动画片</div>
+        <!-- <div>test</div>  if结构不能被破坏-->
+        <div v-else>小朋友看的动画片</div>
+
+
+        <div v-show="false">v-show指令</div>
+
+        <!-- template可以用来包裹结构,但是最终不会渲染到页面上 -->
+        <template v-show="age>=18">
+            <h1>抽烟</h1>
+            <h1>喝酒</h1>
+            <h1>烫头</h1>
+        </template>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            data: {
+                age: 18
+            }
+        })
+    </script>
+</body>
+</html>

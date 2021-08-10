@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* * {
+            margin: 0;
+            padding: 0;
+        } */
+
+        /* div {
+            设计值 / (设计稿宽度 / 10)
+            width:345px;
+            height: 150px;
+            margin: 15px;
+            background-color: skyblue;
+
+        } */
+    </style>
+    <link rel="stylesheet" href="./适配方式二.css">
+</head>
+<body>
+    <div></div>
+
+    <script>
+        window.onresize = adapter 
+
+        adapter()
+
+        function adapter(){
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px'
+        }
+       
+    </script>
+</body>
+</html>

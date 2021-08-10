@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 引入vue -->
+    <script src="js/vue.js"></script>
+    <!-- 模板 -->
+    <div id="root" @click.self="farHandle" style="background-color: pink">
+      <!-- 注意: 模板中,只能拿到vm身上的属性或方法 -->
+      <h1>欢迎来尚硅谷学习</h1>
+      <button v-on:click="handle">点我展示信息(v-on绑定)</button><br /><br />
+      <button @click="handle">点我展示信息(@绑定)</button><br /><br />
+      <!-- 注意: 事件处理函数默认会接收到事件对象,但是如果传递了其他参数,事件对象就拿不到了. 可以通过$event手动将事件对象,传递到事件处理函数中 -->
+      <button @click="handle($event,'还有10分钟下课')">
+        点我展示信息(传递参数)</button
+      ><br /><br />
+      <a @click.prevent="handle1" href="http://www.atguigu.com"
+        >点我展示信息(阻止默认行为)</a
+      ><br /><br />
+
+      <button @click.stop="handle">点我展示信息(阻止冒泡)</button><br /><br />
+
+      <a @click.prevent.stop="handle" href="http://www.atguigu.com"
+        >点我展示信息(阻止默认事件+冒泡)</a
+      ><br /><br />
+
+      <input
+        @keyup.enter="handle"
+        type="text"
+        placeholder="按下回车键展示信息"
+      />
+
+      <hr />
+
+      <button @click="handle">展示信息(只触发一次)</button>
+      <button>展示信息(只有事件目标触发)</button>
+    </div>
+
+    <!-- 实例化vm -->
+    <script>
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          msg: '一会儿就吃饭了',
+        },
+        methods: {
+          handle: (e, a) => {
+            console.log(this)
+            // e.stopPropagation()
+            // console.log(e, a)
+            // console.log(e)
+          },
+          handle1(e) {
+            // e.preventDefault()
+
+            console.log(this.msg)
+          },
+          farHandle() {
+            console.log('父元素的点击事件触发了')
+          },
+        },
+      })
+      // console.log(vm)
+    </script>
+  </body>
+</html>

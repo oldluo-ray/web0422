@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="./js/vue.js"></script>
+
+    <div id="root">
+        <div>{{n}}</div>
+        <div v-big-num="n"></div>
+        <!-- <input type="text" v-fbind="msg"> -->
+        <button @click="handle">按钮+1</button>
+    </div>
+
+    <div id="root1">
+        <div v-big-num="n"></div>
+    </div>
+    
+    
+    <script>
+
+        Vue.directive('big-num',(element,binding)=>{
+                    // element就是指令所绑定的元素
+                    // binding是和指令相关的一些信息. value 绑定的数据的值
+                    // console.log(element,binding);
+                    console.log('do');
+                    element.innerText = binding.value * 10
+            })
+       
+
+        new Vue({
+            el:'#root',
+            data: {
+               n: 1,
+               msg: '123'
+            },
+            methods: {
+                handle(){
+                    this.n += 1
+                }
+            },
+            // 定义自定义指令
+            directives: {
+                // 自定义指令 简写形式: 模拟了完整写法的bind和update函数
+                
+
+                // big: {
+                //     bind(element,binding){
+                //         console.log('bind执行了', element,binding.value);
+                //         element.innerText = binding.value *10
+
+                //     },
+                //     inserted(element,binding){
+                //         console.log('inserted执行了', element,binding.value);
+
+                //     },
+                //     update(element,binding){
+                //         console.log('update执行了', element,binding.value);
+                //         element.innerText = binding.value *10
+                //     }
+                // },
+                // fbind: {
+                //     bind(element,binding){
+                //         console.log('bind执行了', element,binding.value);
+                //         element.value = binding.value
+                //         element.style.color="red"
+                        
+
+                //     },
+                //     inserted(element,binding){
+                //         console.log('inserted执行了', element,binding.value);
+                //         element.focus()
+
+                //     },
+                //     update(element,binding){
+                //         console.log('update执行了', element,binding.value);
+                //         element.value = binding.value
+                        
+                //     }
+                // }
+            }
+           
+            
+        })
+        
+        new Vue({
+            el: "#root1",
+            data:{
+                n: 2
+            }
+        })
+       
+    
+    </script>
+</body>
+</html>

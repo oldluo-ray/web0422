@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意: 要注意顺序,先react,后react-dom -->
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <!-- 需要添加type=text/babel babel才会工作,将这个script里面的代码,进行编译 -->
+    <script type="text/babel">
+      let obj = {
+        age: 19,
+      }
+
+      // let div
+      // if (obj.age >= 18) {
+      //   div = <div>看大人看的动画片</div>
+      // } else {
+      //   div = <div>看动画片</div>
+      // }
+
+      // let div =
+      //   obj.age >= 18 ? <div>看大人看的动画片</div> : <div>看动画片</div>
+
+      // let div = obj.age >= 18 && <div>123</div>
+
+      let div = (
+        <div>
+          <h1>zs</h1>
+          <h2>18</h2>
+          {/* 注意: 在jsx中如果直接写if,则jsx认为这是普通的文本. 如果想要让我们的代码,被当做js执行,就必须要写插值表达式.但是插值表达式中无法写if语句,所以应该使用三元代替*/}
+          {obj.age >= 18 ? <h3>看大人看的动画片</h3> : <h3>看动画片</h3>}
+          {obj.age >= 18 && <div>123</div>}
+        </div>
+      )
+
+      ReactDOM.render(div, document.getElementById('root'))
+    </script>
+  </body>
+</html>

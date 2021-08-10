@@ -1,0 +1,10 @@
+div span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+}

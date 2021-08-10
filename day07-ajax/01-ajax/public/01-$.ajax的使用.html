@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+      $('#btn').on('click', function () {
+        $.ajax({
+          url: 'http://127.0.0.1:5000/test', // 请求地址
+          type: 'post', // type表示请求方式,不写默认是get
+          data: {
+            //get/post如何要上传数据,都是写在data中
+            username: 'zs',
+            age: 18,
+          },
+          // timeout: 2000,//超时时间 单位是毫秒
+          // dataType: 'json', //默认值就是json. 如果服务器响应的是json字符串,会自动转成对象
+          success: function (data) {
+            //当响应成功,这个回调函数被调用.可以通过形参接受到响应主体的信息
+            console.log(data)
+          },
+          error: function () {
+            console.log('请求失败了')
+          },
+          complete: function () {
+            console.log('请求完成了')
+          },
+          beforeSend: function () {
+            console.log('请求发送之前')
+            // return true
+            // return false
+            return 0
+          },
+        })
+      })
+    </script>
+  </body>
+</html>

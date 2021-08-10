@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 第一步: 引入vue.js -->
+    <script src="./js/vue.js"></script>
+
+    <!-- 第二步: 定义模板 -->
+    <div id="root">
+      <!-- 单向数据绑定: 数据==>视图  -->
+      单向数据绑定:<input type="text" :value="val1" /> <br /><br />
+      <!-- 双向数据绑定: 数据==>视图 以及 视图 ==> 数据 -->
+      
+      <!-- 双向向数据绑定:<input type="text" v-model:value="val2" /> <br /><br /> -->
+      <!-- 关于v-model的简写: vue内部会根据标签的类型,自动绑定vlaue或checked属性等 -->
+      双向向数据绑定:<input type="text" v-model="val2" /> <br /><br />
+      复选框: <input type="checkbox" v-model="isCheck" />
+      <!-- 练习时遇到的问题: 不要用js中的关键字 -->
+      <!-- test:<input type="text" :value="test" /> -->
+    </div>
+
+    <!-- 第三步: 编写vue代码 -->
+    <script>
+      new Vue({
+        el: '#root',
+        data: {
+          val1: '123',
+          val2: '345',
+          test: '123',
+          isCheck: true,
+        },
+      })
+    </script>
+  </body>
+</html>

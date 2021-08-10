@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 第一步: 引入vue.js -->
+    <script src="./js/vue.js"></script>
+
+    <!-- 第二步: 定义模板 -->
+    <div id="root">
+      姓: <input type="text" v-model="firstName" /> <br />
+      <br />
+
+      名:<input type="text" v-model="lastName" /> <br />
+      <br />
+      <!-- <div>{{firstName +'-'+ lastName}}</div> -->
+      <!-- <div>{{fullName()}}</div> -->
+      <!-- <div>{{fullName}}</div> -->
+      全名:<input type="text" v-model="fullName" />
+    </div>
+
+    <!-- 第三步: 编写vue代码 -->
+    <script>
+      new Vue({
+        el: '#root',
+        data: {
+          firstName: '张',
+          lastName: '三',
+        },
+        // 计算属性
+        computed: {
+          // 注意: 计算属性,相当于新增了一个属性
+          //   fullName: {
+          //     //   getter调用时机: 1. 访问这个计算属性的时候 2. 当计算属性依赖的数据发生变化的时候,getter会被调用,计算最新的结果
+          //     get() {
+          //       console.log('fullName的getter被调用了')
+          //       return this.firstName + '-' + this.lastName
+          //     },
+          //     set(value) {
+          //       //   console.log('setter被调用了', value)
+          //       const arr = value.split('-')
+          //       console.log(arr)
+          //       this.firstName = arr[0]
+          //       this.lastName = arr[1]
+          //     },
+          //   },
+          fullName() {
+            return this.firstName + '-' + this.lastName
+          },
+        },
+        // methods: {
+        //   fullName() {
+        //     return this.firstName + '-' + this.lastName
+        //   },
+        // },
+      })
+    </script>
+  </body>
+</html>

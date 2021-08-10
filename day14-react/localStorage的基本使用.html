@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 存
+        //    localStorage.setItem('test', 123)
+        // localStorage.setItem('test', 'aaaaa')
+        // //    localStorage.setItem('test', '')
+        // // 取
+        // console.log(localStorage.getItem('test'));
+
+        // 注意点: 只能存储字符串
+        // let arr = ['a','b','c']
+        // let obj = {name: 'zs'}
+        // // localStorage.setItem('obj', obj)
+        // console.log(localStorage.getItem('obj'));
+
+        // let arr = [{name: 'zs'}, {name: 'ls'}]
+        // let str = JSON.stringify(arr)
+        // localStorage.setItem('arr', str)
+        // console.log(localStorage.getItem('arr'));
+        // console.log(JSON.parse(localStorage.getItem('arr')));
+
+        // 小结: 
+        //     1. 存储数据的格式是键值对
+        //     2. 存储的数据,没有有效期,一致有效,除非删除
+        //     3. 只能存储字符串,所以要存储数组/对象,应该先通过JSON进行转换
+
+    </script>
+</body>
+</html>

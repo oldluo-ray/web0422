@@ -1,0 +1,51 @@
+<template>
+  <div class="todo-footer">
+    <label>
+      <input type="checkbox" v-bind:checked="allTotal===doneTotal" @change="changeAllCheckBox"/>
+    </label>
+    <span> <span>已完成{{doneTotal}}</span> / 全部{{allTotal}} </span>
+    <button class="btn btn-danger" @click="deleteDoneTodo">清除已完成任务</button>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['todoList','changeAllCheckBox','deleteDoneTodo'],
+  computed:{
+    doneTotal(){
+       return this.todoList.filter(item=>item.isDone).length
+    },
+    allTotal(){
+      return this.todoList.length
+    }
+  }
+}
+</script>
+
+<style scoped>
+/*footer*/
+.todo-footer {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 6px;
+  margin-top: 5px;
+}
+
+.todo-footer label {
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.todo-footer label input {
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.todo-footer button {
+  float: right;
+  margin-top: 5px;
+}
+</style>

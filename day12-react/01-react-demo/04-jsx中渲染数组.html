@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意: 要注意顺序,先react,后react-dom -->
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <!-- 需要添加type=text/babel babel才会工作,将这个script里面的代码,进行编译 -->
+    <script type="text/babel">
+      let obj = {
+        name: 'hj',
+        info: '太君',
+        age: 58,
+        hobby: ['抽烟', '喝酒', '找富婆'],
+        test: [<h3 key="1">1</h3>, <h3 key="2">2</h3>, <h3 key="3">3</h3>],
+      }
+      // 使用的是jsx  javascript xml
+      // jax是语法糖, 最终还是编译成React.createElement执行
+      const div = (
+        <div>
+          <h1>个人介绍</h1>
+          {/* 渲染普通对象没有意义,但是渲染react对象有意义*/}
+          {/*<div>{obj}</div>*/}
+          {obj.hobby}
+          {/*如果要渲染数组,react可以将数组中的所有元素,当做当前父节点的子节点,一个一个的直接渲染出来.但是需要注意: 如果数组中是普通数据类型,就无需复用,所以不需要加key属性,如果数组的值是react元素,最终要创建真实的dom元素,react底层为了提高性能,实现复用.要求我们给每一个子节点添加一个key属性,值不能重复*/}
+          {obj.test}
+        </div>
+      )
+
+      ReactDOM.render(div, document.getElementById('root'))
+    </script>
+  </body>
+</html>

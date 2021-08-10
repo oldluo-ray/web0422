@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意: 要注意顺序,先react,后react-dom -->
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <!-- 需要添加type=text/babel babel才会工作,将这个script里面的代码,进行编译 -->
+    <script type="text/babel">
+      const div = (
+        <div>
+          <div
+            className={'box'}
+            onClick={function (e) {
+              console.log(123)
+              //  由于这是jsx,不是真实的dom.所以这个事件处理函数,并不是真正dom的事件处理函数.在react底层处理的时候,是在真正的事件处理函数中普通调用了这个函数,所以理论上应该指向window.但是我们的代码被babel编译过,开启了严格模式,所以现在看到的结果是指向undefined
+              // console.log(this)
+              // 这个e是react包装之后的合成事件,处理了e的兼容问题
+              // 在控制台打印,无法直接查看属性的值,但是代码可以直接获取
+              console.log(e.target)
+              // 如果一定要在控制台查看属性的值,可以调用persist方法
+              // e.persist()
+            }}
+            onMouseEnter={function () {
+              console.log('鼠标移入了')
+            }}
+          >
+            345
+          </div>
+        </div>
+      )
+
+      ReactDOM.render(div, document.getElementById('root'))
+    </script>
+  </body>
+</html>

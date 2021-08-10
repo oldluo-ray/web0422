@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="../../02-自定义myAjax.js"></script>
+    <script>
+      $('#btn').on('click', function () {
+         myAjax({
+             url: 'http://127.0.0.1:5000/test',
+             type: 'post',
+             data: {
+                 name:'hj',
+                 age: 38
+             },
+            //  timeout: 5000,
+            //  dataType: 'text',
+             success:function(data){
+                console.log(data);
+             },
+            //  error: function(){
+            //      console.log('请求错误');
+            //  },
+            //  complete:function(){
+            //      console.log('请求完成了');
+            //  },
+            //  beforeSend:function(){
+            //      console.log('发送之前调用');
+            //     //  return 0
+            //  }
+         })
+      })
+    </script>
+  </body>
+</html>

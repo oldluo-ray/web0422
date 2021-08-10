@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .test {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意: 要注意顺序,先react,后react-dom -->
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+    <!-- 需要添加type=text/babel babel才会工作,将这个script里面的代码,进行编译 -->
+    <script type="text/babel">
+      /*
+
+        - 需求：实现评论列表功能
+
+        - 如果有评论数据，就展示列表结构 li（ 列表渲染 ）要包含a标签
+
+          - name 表示评论人，渲染 h3
+          - content 表示评论内容，渲染 p
+
+        - 如果没有评论数据，就展示一个 h1 标签，内容为： 暂无评论！
+
+        - 根据自己的喜好添加样式
+
+        - 给a标签注册点击事件, 打印内容
+
+      */
+
+      const list = [
+        { id: 1, name: 'jack', content: 'rose, you jump i jump' },
+        { id: 2, name: 'rose', content: 'jack, you see you, one day day' },
+        { id: 3, name: 'tom', content: 'jack,。。。。。' },
+      ]
+
+      // a标签的点击事件处理函数
+      function handle(e) {
+        // return false //无效,因为这个handle不是真正的事件处理函数
+        e.preventDefault()
+
+        // console.log(e.target) // 获取到点击的事件目标是真实的dom对象
+        if (e.target.nodeName === 'A') return
+        console.log(e.target.textContent)
+      }
+      // 注意:jsx结构,有且仅有一个根标签
+      let div = (
+        <div>
+          {list.length ? (
+            <ul>
+              {list.map((item) => {
+                return (
+                  <li key={item.id} style={{ backgroundColor: 'skyblue' }}>
+                    <a href="" onClick={handle}>
+                      <h3 className="test">{item.name}</h3>
+                      <p className="test">{item.content}</p>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          ) : (
+            <h1>暂无评论</h1>
+          )}
+        </div>
+      )
+      ReactDOM.render(div, document.getElementById('root'))
+    </script>
+  </body>
+</html>

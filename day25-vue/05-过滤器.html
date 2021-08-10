@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/vue.js"></script>
+    <script src="./js//dayjs.min.js"></script>
+
+    <div id="root">
+        <h1>{{date}}</h1>
+        <h1>格式化之后的结果: {{fmtDate()}}</h1>
+        <h1>格式化之后的结果(使用过滤器): {{date | fmtFilter }}</h1>
+        <h1>格式化之后的结果(使用过滤器): {{date | fmtFilter('YYYY-MM-DD')}}</h1>
+        <h1>格式化之后的结果(使用过滤器): {{date | fmtFilter('YYYY-MM-DD') | splice}}</h1>
+    </div>
+    <hr>
+    <div id="root2">
+        <h2>{{msg | splice}}</h2>
+    </div>
+
+    <script>
+        // 配置全局过滤器
+        Vue.filter('splice', function(value){
+            console.log('全局的过滤器切割执行了');
+            return value.slice(0,5)
+        })
+
+        new Vue({
+            el:'#root',
+            data: {
+              date: Date.now()  
+            },
+            methods: {
+                fmtDate(){
+                    // return dayjs(this.date).format('YYYY-MM-DD HH:mm:ss')
+                    return dayjs(this.date).format('YYYY年MM月DD日 HH时mm分ss秒')
+                }
+            },
+            //配置局部过滤器: 
+            filters: {
+                fmtFilter(value, fmtStr='YYYY年MM月DD日 HH时mm分ss秒'){
+                    
+                    //value就是要操作的数据
+                    return dayjs(value).format(fmtStr)
+                },
+                // splice(value){
+                //     console.log('局部的切割字符串过滤器执行了');
+                //     return value.slice(0,5)
+                // }
+            }
+        })
+    
+        new Vue({
+            el:'#root2',
+            data: {
+                msg: 'test字符串'
+            }
+        })
+    
+    </script>
+</body>
+</html>

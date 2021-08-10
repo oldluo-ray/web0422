@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/vue.js"></script>
+
+    <div id="root">
+        <ul>
+            <!-- 遍历数组: item就是数组的元素, index就是下标 -->
+            <!-- <li v-for="(item,index) in arr" :key="index">
+                <p>{{item.name}}</p>
+                <p>{{item.age}}</p>
+            </li> -->
+
+            <!-- <li v-for="(value,key) in obj" :key="key">
+                <p>{{value}}</p>
+                <p>{{key}}</p>
+            </li> -->
+            <!-- <li v-for="(chart,index) in str" :key="index">
+                <p>{{a}}</p>
+                <p>{{b}}</p>
+            </li> -->
+            <!-- <li v-for="(a,b) in 5" >
+                <p>{{a}}</p>
+                <p>{{b}}</p>
+            </li> -->
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#root',
+            data: {
+               arr: [{name: 'zs', age: 18},{name: 'ls', age: 20}],
+               obj: {
+                   name: 'zs',
+                   age: 18
+               },
+               str: 'hello'
+            }
+        })
+    </script>
+</body>
+</html>
