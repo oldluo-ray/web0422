@@ -9,7 +9,7 @@ Vue.use(vuex)
 
 export default new vuex.Store({
   modules: {
-    list:list,
-    sum:sum,
+    list: list,
+    sum: sum,
   },
 })

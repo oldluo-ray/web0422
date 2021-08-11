@@ -8,6 +8,11 @@ export default {
       return state.list.length
     },
   },
+  actions: {
+    test(context, value) {
+      console.log(context, value)
+    },
+  },
   mutations: {
     addUser(state, value) {
       state.list.push({ name: value })
